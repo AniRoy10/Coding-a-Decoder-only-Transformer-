@@ -1,17 +1,9 @@
 import torch
 import torch.nn as nn
 
-# Sample corpus
-corpus = [
-    "I am a boy",
-    "I live in India",
-    "In the city of Kolkata",
-    "Kolkata is city of Joy",
-    "It was the British capital of India",
-    "Rosogolla is famous here",
-    "We have Victoria Memorial , Indian Mueseun, Princep ghat",
-    "Come visit us , we love people , we dont judge ",
-]
+# Load corpus from file
+with open("corpus.txt", "r", encoding="utf-8") as f:
+    corpus = [line.strip() for line in f.readlines() if line.strip()]
 
 # Step 1: Create a simple vocabulary mapping words to token IDs
 vocab = {"<PAD>": 0, "<UNK>": 1, "<START>": 2, "<END>": 3}  # Special tokens
@@ -35,4 +27,3 @@ input_tensor = torch.tensor(padded_corpus)
 
 # Expose required objects
 __all__ = ["input_tensor", "vocab"]
-
